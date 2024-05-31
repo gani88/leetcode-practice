@@ -38,16 +38,17 @@ as possible by always selecting the highest available quantity and then reducing
 This greedy approach works effectively to maximize the total sum given the constraints.
 """
 
-def getMaximumAmount(qty, m):
-    max_amount = 0
+def maxAmount(qty, m):
+    store_total = 0
     n = len(qty)
 
     for i in range(m):
         qty.sort()
-        max_amount = max_amount + qty[n-1]
-
-        qty[n-1] -= 1
+        store_total += qty[n - 1]
         print(qty)
-    return max_amount
 
-print(getMaximumAmount([3, 1, 4, 1, 5], 3))
+        qty[n-1] -= 1   # Because it want to subsequent selection so i must minus last element by one, then sort again
+
+    return store_total
+
+print(maxAmount([3, 1, 4, 1, 5], 3))
